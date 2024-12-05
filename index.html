@@ -207,10 +207,11 @@
             slideshowContainer.style.width = '80%';
             slideshowContainer.style.height = '300px';
             slideshowContainer.style.margin = '20px auto';
-            slideshowContainer.style.overflow = 'hidden';
+            slideshowContainer.style.overflow = 'visible';
+
 
             // Add images to slideshow
-            const images = ['image1.png', 'image2.png', 'image3.png'];
+            const images = ['image1.png', 'image2.png', 'image3.png', 'image4.png'];
             images.forEach((src, index) => {
                 const img = document.createElement('img');
                 img.src = src;
