@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Interaction</title>
+    <title>Project 81 Official Wiki</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <style>
         :root {
             --shadow-color: #FF9E9E;
@@ -35,47 +36,73 @@
             font-family: "Archivo Black", "Archivo", sans-serif;
         }
 
-        .text-container p {
+        .text-container p, .text-container button {
             font-size: 60px;
             text-transform: uppercase;
             transition: opacity 0.5s, transform 0.5s;
         }
-
+        .subtitle {
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: 900;
+            font-size: 10px !important;
+        }
         .hidden {
             opacity: 0;
             transform: translateY(20px);
+        }
+
+        button {
+            font-family: "Archivo Black", "Archivo", sans-serif;
+            background-color: #ffffff00;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #eaeaea14;
         }
     </style>
 </head>
 <body>
     <div class="text-container">
-        <p class="text" id="text1">Project 81</p>
-        <p class="text hidden" id="text2">Official Wiki</p>
-        <p class="text hidden" id="text3">Welcome!</p>
+        <p class="text" id="text1">WELCOME</p>
+        <p class="subtitle" id="subtitle1">프로젝트 81 공식 위키에 오신 것을 환영합니다</p>
+        <button class="text hidden" id="text2" onclick="loadScreen(1)">COUNTRIES</button>
+        <p class="subtitle hidden" id="subtitle2">국가와 세력</p>
+        <button class="text hidden" id="text3" onclick="loadScreen(2)">STORY</button>
+        <p class="subtitle hidden" id="subtitle3">설정과 이야기</p>
     </div>
 
     <script>
+
         const texts = document.querySelectorAll('.text');
+        const subtitles = document.querySelectorAll('.subtitle');
         let currentTextIndex = 0;
 
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
             const triggerHeight = window.innerHeight / 2;
 
-            if (scrollPosition > triggerHeight * (currentTextIndex + 1)) {
-                if (currentTextIndex < texts.length - 1) {
-                    texts[currentTextIndex].classList.add('hidden');
-                    currentTextIndex++;
-                    texts[currentTextIndex].classList.remove('hidden');
+            texts.forEach((text, index) => {
+                const textPosition = index * triggerHeight;
+
+                if (scrollPosition >= textPosition && scrollPosition < textPosition + triggerHeight) {
+                    text.classList.remove('hidden');
+                    subtitles[index].classList.remove('hidden');
+                } else {
+                    text.classList.add('hidden');
+                    subtitles[index].classList.add('hidden');
                 }
-            } else if (scrollPosition < triggerHeight * currentTextIndex) {
-                if (currentTextIndex > 0) {
-                    texts[currentTextIndex].classList.add('hidden');
-                    currentTextIndex--;
-                    texts[currentTextIndex].classList.remove('hidden');
-                }
-            }
+            });
         });
+        function handleButtonClick(buttonNumber) {
+            alert(`버튼 ${buttonNumber}이(가) 클릭되었습니다!`);
+        }
     </script>
 </body>
 </html>
