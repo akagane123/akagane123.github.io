@@ -179,12 +179,27 @@
             });
     
             function clearContent() {
-                const content = document.getElementById('content');
-                // Remove all children of the content container
-                while (content.firstChild) {
-                    content.removeChild(content.firstChild);
-                }
+            const content = document.getElementById('content');
+            while (content.firstChild) {
+                content.removeChild(content.firstChild);
             }
+        
+            const newTitle = document.createElement('h1');
+            newTitle.textContent = 'Countries';
+            newTitle.style.color = 'white';
+            newTitle.style.textAlign = 'center';
+            newTitle.style.marginTop = '20px';
+
+            const newParagraph = document.createElement('p');
+            newParagraph.textContent = 'Here is the list of countries and their details.';
+            newParagraph.style.color = 'white';
+            newParagraph.style.textAlign = 'center';
+            newParagraph.style.marginTop = '10px';
+
+            content.appendChild(newTitle);
+            content.appendChild(newParagraph);
+        }
+
 
         </script>
 </body>
