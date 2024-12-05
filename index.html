@@ -3,78 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Interaction</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&family=Archivo+Black&display=swap" rel="stylesheet">
-    <title>Project 81 Official Wiki</title>
     <style>
-
+        :root {
+            --shadow-color: #FF9E9E;
+            --shadow-color-light: white;
+        }
 
         * {
-            padding: 0;
             margin: 0;
+            padding: 0;
             box-sizing: border-box;
-        }
-        :root {
-            --shadow-color: #eaeaea;
-            --shadow-color-light: rgb(214, 214, 214);
         }
 
         body {
             font-family: "Archivo", sans-serif;
             background: url('background.png') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        p {
-            font-size: 85px;
-            text-transform: uppercase;
-            font-family: "Archivo Black", "Archivo", sans-serif;
-            font-weight: normal;
-            text-align: center;
+            height: 200vh; 
+            overflow-x: hidden;
             color: white;
-            animation: neon 3s infinite;
         }
 
-        @keyframes neon {
-            0%, 100% {
-                text-shadow: 
-                    -1px -1px 1px var(--shadow-color-light), 
-                    -1px 1px 1px var(--shadow-color-light), 
-                    1px -1px 1px var(--shadow-color-light), 
-                    1px 1px 1px var(--shadow-color-light),
-                    0 0 3px var(--shadow-color-light), 
-                    0 0 10px var(--shadow-color-light), 
-                    0 0 20px var(--shadow-color-light),
-                    0 0 30px var(--shadow-color), 
-                    0 0 40px var(--shadow-color), 
-                    0 0 50px var(--shadow-color), 
-                    0 0 70px var(--shadow-color), 
-                    0 0 100px var(--shadow-color), 
-                    0 0 200px var(--shadow-color);
-            }
-            50% {
-                text-shadow: 
-                    -1px -1px 1px var(--shadow-color-light), 
-                    -1px 1px 1px var(--shadow-color-light), 
-                    1px -1px 1px var(--shadow-color-light), 
-                    1px 1px 1px var(--shadow-color-light),
-                    0 0 5px var(--shadow-color-light), 
-                    0 0 15px var(--shadow-color-light), 
-                    0 0 25px var(--shadow-color-light),
-                    0 0 40px var(--shadow-color), 
-                    0 0 50px var(--shadow-color), 
-                    0 0 60px var(--shadow-color), 
-                    0 0 80px var(--shadow-color), 
-                    0 0 110px var(--shadow-color), 
-                    0 0 210px var(--shadow-color);
-            }
+        .text-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: "Archivo Black", "Archivo", sans-serif;
+        }
+
+        .text-container p {
+            font-size: 50px;
+            text-transform: uppercase;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
         }
     </style>
 </head>
 <body>
-    <p class="logo-1">Project 81</p>
+    <div class="text-container">
+        <p class="text" id="text1">Welcome to Neon World</p>
+        <p class="text hidden" id="text2">Scroll Down for More</p>
+        <p class="text hidden" id="text3">Enjoy the Animation!</p>
+    </div>
+
+    <script>
+        const texts = document.querySelectorAll('.text');
+        let currentTextIndex = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const triggerHeight = window.innerHeight / 2;
+
+            if (scrollPosition > triggerHeight * (currentTextIndex + 1)) {
+                if (currentTextIndex < texts.length - 1) {
+                    texts[currentTextIndex].classList.add('hidden');
+                    currentTextIndex++;
+                    texts[currentTextIndex].classList.remove('hidden');
+                }
+            } else if (scrollPosition < triggerHeight * currentTextIndex) {
+                if (currentTextIndex > 0) {
+                    texts[currentTextIndex].classList.add('hidden');
+                    currentTextIndex--;
+                    texts[currentTextIndex].classList.remove('hidden');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
