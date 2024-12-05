@@ -3,42 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Example</title>
+    <title>Neon Text Animation</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            margin: 0;
+        :root {
+            --shadow-color: #FF9E9E;
+            --shadow-color-light: white;
+        }
+
+        * {
             padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
-        h1 {
-            color: #333;
+
+        body {
+            font-family: "Archivo", sans-serif;
+            background-color: #192824;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-            background-color: #007BFF;
+
+        p {
+            font-size: 65px;
+            text-transform: uppercase;
+            font-family: "Archivo Black", "Archivo", sans-serif;
+            font-weight: normal;
+            text-align: center;
             color: white;
-            border: none;
-            border-radius: 5px;
+            animation: neon 3s infinite;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        @keyframes neon {
+            0%, 100% {
+                text-shadow: 
+                    -1px -1px 1px var(--shadow-color-light), 
+                    -1px 1px 1px var(--shadow-color-light), 
+                    1px -1px 1px var(--shadow-color-light), 
+                    1px 1px 1px var(--shadow-color-light),
+                    0 0 3px var(--shadow-color-light), 
+                    0 0 10px var(--shadow-color-light), 
+                    0 0 20px var(--shadow-color-light),
+                    0 0 30px var(--shadow-color), 
+                    0 0 40px var(--shadow-color), 
+                    0 0 50px var(--shadow-color), 
+                    0 0 70px var(--shadow-color), 
+                    0 0 100px var(--shadow-color), 
+                    0 0 200px var(--shadow-color);
+            }
+            50% {
+                text-shadow: 
+                    -1px -1px 1px var(--shadow-color-light), 
+                    -1px 1px 1px var(--shadow-color-light), 
+                    1px -1px 1px var(--shadow-color-light), 
+                    1px 1px 1px var(--shadow-color-light),
+                    0 0 5px var(--shadow-color-light), 
+                    0 0 15px var(--shadow-color-light), 
+                    0 0 25px var(--shadow-color-light),
+                    0 0 40px var(--shadow-color), 
+                    0 0 50px var(--shadow-color), 
+                    0 0 60px var(--shadow-color), 
+                    0 0 80px var(--shadow-color), 
+                    0 0 110px var(--shadow-color), 
+                    0 0 210px var(--shadow-color);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Web Page</h1>
-    <p>This is a simple example of an HTML page with some styling and interactivity.</p>
-    <button onclick="showAlert()">Click Me!</button>
-
-    <script>
-        function showAlert() {
-            alert('Hello, this is a simple alert!');
-        }
-    </script>
+    <p class="logo-1">Neon Glow</p>
 </body>
 </html>
