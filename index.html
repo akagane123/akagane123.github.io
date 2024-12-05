@@ -180,10 +180,12 @@
     
             function clearContent() {
             const content = document.getElementById('content');
+            // Remove all existing children
             while (content.firstChild) {
                 content.removeChild(content.firstChild);
             }
-        
+
+            // Add new title and description
             const newTitle = document.createElement('h1');
             newTitle.textContent = 'Countries';
             newTitle.style.color = 'white';
@@ -191,14 +193,55 @@
             newTitle.style.marginTop = '20px';
 
             const newParagraph = document.createElement('p');
-            newParagraph.textContent = 'Here is the list of countries and their details.';
+            newParagraph.textContent = '대일본제국';
             newParagraph.style.color = 'white';
             newParagraph.style.textAlign = 'center';
             newParagraph.style.marginTop = '10px';
+            newParagraph.style.fontFamily = '"Noto Sans KR", sans-serif';
+            newParagraph.style.fontWeight = '900';
+
+            // Add image slideshow container
+            const slideshowContainer = document.createElement('div');
+            slideshowContainer.id = 'slideshow';
+            slideshowContainer.style.position = 'relative';
+            slideshowContainer.style.width = '80%';
+            slideshowContainer.style.height = '300px';
+            slideshowContainer.style.margin = '20px auto';
+            slideshowContainer.style.overflow = 'hidden';
+
+            // Add images to slideshow
+            const images = ['image1.png', 'image2.png', 'image3.png'];
+            images.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Slide ${index + 1}`;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.position = 'absolute';
+                img.style.top = '0';
+                img.style.left = `${index * 100}%`; // Position each image
+                img.style.transition = 'transform 0.5s ease';
+                slideshowContainer.appendChild(img);
+            });
 
             content.appendChild(newTitle);
             content.appendChild(newParagraph);
+            content.appendChild(slideshowContainer);
+
+            startSlideshow(); // Start the slideshow
         }
+        function startSlideshow() {
+        const images = document.querySelectorAll('#slideshow img');
+        let currentIndex = 0;
+
+        setInterval(() => {
+            images.forEach((img, index) => {
+                img.style.transform = `translateX(-${currentIndex * 100}%)`;
+            });
+
+            currentIndex = (currentIndex + 1) % images.length;
+        }, 3000); // Slide every 3 seconds
+    }
 
 
         </script>
